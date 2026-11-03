@@ -32,6 +32,15 @@ app.post("/inscriere", async(req,res) =>{
         return res.status(400).json({err: true, msg:"Date invalide", errors})
     }
 
+    const existName = await Inscriere.findOne({
+        where:{
+            numeEchipa: data.nume_echipa
+        }
+    })
+    if(existName){
+        return res.status(400).json({err: true, msg: `Echipa ${data.nume_echipa} exista deja`})
+    }
+
     try{
         await Inscriere.create({
             nume: data.nume,
@@ -41,7 +50,7 @@ app.post("/inscriere", async(req,res) =>{
             nrParticipanti: Number(data.nr_participanti),
             membri: data.membri,
             interval: data.interval,
-            legatOchi: data.legat_ochi,
+            legatOchi: data.legat_ochi === "da",
             sacrificiu: data.sacrificiu
         })
         return res.status(201).json({err:false, msg:`Echipa ${data.nume_echipa} a fost inregistrata!`})
