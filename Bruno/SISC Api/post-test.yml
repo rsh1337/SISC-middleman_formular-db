@@ -1,6 +1,7 @@
 info:
   name: post-test
   type: http
+  seq: 1
 
 http:
   method: POST
@@ -17,8 +18,7 @@ http:
         "membri": "andrei,maria,florin",
         "interval": "14:00-15:30",
         "legat_ochi": "da",
-        "sacrificiu": "andrei",
-        "acord_termeni": "on"
+          "sacrificiu": "andrei"
       }
   auth: inherit
 

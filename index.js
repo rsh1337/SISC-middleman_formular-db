@@ -14,8 +14,15 @@ const rules = {
     legat_ochi: /^(da|nu)$/,
 }
 
+const fields = ["nume", "telefon", "email", "nume_echipa", "nr_participanti", "interval", "legat_ochi", "acord_termeni"]
+
 app.post("/inscriere", async (req, res) => {
     const data = req.body
+
+    const missingField = fields.filter(field => !data[field])
+    if(missingField.length > 0){
+        return res.status(400).json({err: true, msg:"Campuri lipsa", missingField})
+    }
 
     const errors = [];
     for (const field in rules) {
