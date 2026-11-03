@@ -1,0 +1,29 @@
+info:
+  name: post-test
+  type: http
+
+http:
+  method: POST
+  url: http://localhost:3001/inscriere
+  body:
+    type: json
+    data: |-
+      {
+        "nume": "rares andrei",
+        "telefon": "0712345678",
+        "email": "contact@rares-andrei.me",
+        "nume_echipa": "Hallo5",
+        "nr_participanti": 3,
+        "membri": "andrei,maria,florin",
+        "interval": "14:00-15:30",
+        "legat_ochi": "da",
+        "sacrificiu": "andrei",
+        "acord_termeni": "on"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
